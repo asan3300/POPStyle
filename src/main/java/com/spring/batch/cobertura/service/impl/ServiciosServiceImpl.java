@@ -3,7 +3,8 @@ package com.spring.batch.cobertura.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.Servicio;
+import com.spring.batch.cobertura.dto.ServicioDTO;
+import com.spring.batch.cobertura.entity.Servicio;
 import com.spring.batch.cobertura.repository.ICargaServicioRepository;
 import com.spring.batch.cobertura.service.ServiciosService;
 
@@ -14,14 +15,17 @@ public class ServiciosServiceImpl implements ServiciosService {
 	private ICargaServicioRepository cargaServicioRepository;
 
 	@Override
-	public Servicio findByCodigo(long codigo) {
-		Servicio servicio = new Servicio();
+	public ServicioDTO findByCodigo(long codigo) {
+		ServicioDTO servicioDTO = new ServicioDTO();
 		try {
-			servicio = cargaServicioRepository.findByCodigo(codigo);
+			Servicio servicio = cargaServicioRepository.findByCodigo(codigo);
+			servicioDTO.setId(servicio.getId());
+			servicioDTO.setCodigo(Long.parseLong(servicio.getCodigo()));
+			servicioDTO.setDescripcion(servicio.getDescripcion());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return servicio;
+		return servicioDTO;
 	}
 	
 	@Override
@@ -33,6 +37,20 @@ public class ServiciosServiceImpl implements ServiciosService {
 			System.out.println("Error: " + e);
 		}
 		return cargaServicioGuardado;
+	}
+
+	@Override
+	public ServicioDTO findById(long id) {
+		ServicioDTO servicioDTO = new ServicioDTO();
+		try {
+			Servicio servicio = cargaServicioRepository.findById(id).get();
+			servicioDTO.setId(servicio.getId());
+			servicioDTO.setCodigo(Long.parseLong(servicio.getCodigo()));
+			servicioDTO.setDescripcion(servicio.getDescripcion());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return servicioDTO;
 	}
 
 }

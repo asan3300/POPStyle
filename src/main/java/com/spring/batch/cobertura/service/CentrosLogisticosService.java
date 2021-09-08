@@ -1,10 +1,12 @@
 package com.spring.batch.cobertura.service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CentroLogistico;
+import com.spring.batch.cobertura.dto.CentroLogisticoDTO;
+import com.spring.batch.cobertura.entity.CentroLogistico;
 
 public interface CentrosLogisticosService {
 	
-	public CentroLogistico findByCodigo(String codigo);
+	public CentroLogisticoDTO findByCodigo(String codigo);
+	public CentroLogistico findById(Long id);
 	public CentroLogistico saveCentrosLogisticos(CentroLogistico centroLogistico);
 
 }

@@ -4,7 +4,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CentroLogistico;
+import com.spring.batch.cobertura.entity.CentroLogistico;
+
 
 @Repository
 public interface ICargaCentrosLogisticosRepository extends CrudRepository<CentroLogistico, Long> {

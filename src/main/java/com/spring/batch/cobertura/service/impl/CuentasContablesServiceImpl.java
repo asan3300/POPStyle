@@ -3,7 +3,8 @@ package com.spring.batch.cobertura.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CuentaContable;
+import com.spring.batch.cobertura.dto.CuentaContableDTO;
+import com.spring.batch.cobertura.entity.CuentaContable;
 import com.spring.batch.cobertura.repository.ICargaCuentasContablesRepository;
 import com.spring.batch.cobertura.service.CuentasContablesService;
 
@@ -14,14 +15,18 @@ public class CuentasContablesServiceImpl implements CuentasContablesService {
 	private ICargaCuentasContablesRepository cargaCuentasContablesRepository;
 
 	@Override
-	public CuentaContable findByCodigo(long codigo) {
-		CuentaContable cuentaContable = new CuentaContable();
+	public CuentaContableDTO findByCodigo(long codigo) {
+		CuentaContableDTO cuentaContableDTO = new CuentaContableDTO();
 		try {
-			cuentaContable = cargaCuentasContablesRepository.findByCodigo(codigo);
+			CuentaContable cuentaContable = cargaCuentasContablesRepository.findByCodigo(codigo);
+			cuentaContableDTO.setId(cuentaContable.getId());
+			cuentaContableDTO.setCodigo(cuentaContable.getCodigo());
+			cuentaContableDTO.setCuentaContable(cuentaContable.getCuentaContable());
+			cuentaContableDTO.setEstado(cuentaContable.getEstado());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return cuentaContable;
+		return cuentaContableDTO;
 	}
 	
 	

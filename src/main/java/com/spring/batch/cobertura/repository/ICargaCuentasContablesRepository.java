@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CuentaContable;
+import com.spring.batch.cobertura.entity.CuentaContable;
 
 @Repository
 public interface ICargaCuentasContablesRepository extends CrudRepository<CuentaContable, Long> {

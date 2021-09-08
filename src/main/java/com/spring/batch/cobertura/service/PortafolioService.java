@@ -13,7 +13,7 @@ public interface PortafolioService {
 	public List<Object[]> findServicios();
 	public List<Object[]> findUnidadesNegocios();
 	public List<Object[]> findCentrologCentroBen();
-	public List<Object[]> findUnidadNegPorCentroLog();
+	public List<Object[]> findConfiguracionPresupuestoServicio();
 	public CargaPortafolioTemp saveCargaPortafolioTemp(CargaPortafolioTemp cargaPortafolioTemp);
 	public Boolean truncateCargaPortafolioTemp();
 

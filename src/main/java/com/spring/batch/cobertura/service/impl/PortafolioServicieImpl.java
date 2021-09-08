@@ -37,7 +37,7 @@ public class PortafolioServicieImpl  implements PortafolioService {
 	@Override
 	public String findAllWs(String fecha, String codigoCentroLogistico) {
 		String portafolio = "";
-		try {
+		
 			String servicio = "coberturas";
 			HttpHeaders headers = Cabecera.headerPI(servicio, plainCreds);
 			Auditoria auditoria = Cabecera.auditoria();
@@ -51,9 +51,7 @@ public class PortafolioServicieImpl  implements PortafolioService {
 			HttpEntity<String> entity = new HttpEntity<>(json, headers);
 			ResponseEntity<String> response = restTemplate.postForEntity(baseUrl, entity, String.class);
 			portafolio = response.getBody();
-		} catch (Exception e) {
-			System.out.println("ERROR: " + e);
-		}
+		
 		return portafolio;
 	}
 
@@ -102,13 +100,13 @@ public class PortafolioServicieImpl  implements PortafolioService {
 
 	@Override
 	public List<Object[]> findServicios() {
-		List<Object[]> servicios = portafolioRepository.buscarTabla15();
+		List<Object[]> servicios = portafolioRepository.buscarServicios();
 		return servicios;
 	}
 
 	@Override
 	public List<Object[]> findUnidadesNegocios() {
-		List<Object[]> unidadesNegocios = portafolioRepository.buscarTabla15();
+		List<Object[]> unidadesNegocios = portafolioRepository.buscarUnidadesNegocios();
 		return unidadesNegocios;
 	}
 
@@ -119,9 +117,9 @@ public class PortafolioServicieImpl  implements PortafolioService {
 	}
 
 	@Override
-	public List<Object[]> findUnidadNegPorCentroLog() {
-		List<Object[]> unidadNegPorCentroLog = portafolioRepository.buscarCentrosLogCentrosBen();
-		return unidadNegPorCentroLog;
+	public List<Object[]> findConfiguracionPresupuestoServicio() {
+		List<Object[]> configuracionPresupuestoServicio = portafolioRepository.buscarConfiguracionPresupuestoServicio();
+		return configuracionPresupuestoServicio;
 	}
 }
 

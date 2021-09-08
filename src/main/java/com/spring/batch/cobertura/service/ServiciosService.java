@@ -1,10 +1,12 @@
 package com.spring.batch.cobertura.service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.Servicio;
+import com.spring.batch.cobertura.dto.ServicioDTO;
+import com.spring.batch.cobertura.entity.Servicio;
 
 public interface ServiciosService {
 	
-	public Servicio findByCodigo(long codigo);
+	public ServicioDTO findByCodigo(long codigo);
+	public ServicioDTO findById(long id);
 	public Servicio saveServicios(Servicio servicio);
 
 }

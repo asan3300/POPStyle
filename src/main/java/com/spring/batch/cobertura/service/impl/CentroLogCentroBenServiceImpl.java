@@ -2,7 +2,9 @@ package com.spring.batch.cobertura.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.comfenalcoantioquia.coberturas.commons.dto.CentroLogCentroBen;
+
+import com.spring.batch.cobertura.dto.CentroLogCentroBenDTO;
+import com.spring.batch.cobertura.entity.CentroLogCentroBen;
 import com.spring.batch.cobertura.repository.ICargaCentroLogCentroBenRepository;
 import com.spring.batch.cobertura.service.CentroLogCentroBenService;
 
@@ -13,14 +15,17 @@ public class CentroLogCentroBenServiceImpl implements CentroLogCentroBenService 
 	private ICargaCentroLogCentroBenRepository cargaCentroLogCentroBenRepository;
 
 	@Override
-	public CentroLogCentroBen findByCodigo(long codigo) {
-		CentroLogCentroBen centroLogCentroBen = new CentroLogCentroBen();
+	public CentroLogCentroBenDTO findByCodigo(long codigo) {
+		CentroLogCentroBenDTO centroLogCentroBenDTO = new CentroLogCentroBenDTO();
 		try {
-			centroLogCentroBen = cargaCentroLogCentroBenRepository.findByCodigo(codigo);
+			CentroLogCentroBen centroLogCentroBen = cargaCentroLogCentroBenRepository.findByCodigo(codigo);
+			centroLogCentroBenDTO.setId(centroLogCentroBen.getId());
+			centroLogCentroBenDTO.setIdCentroBeneficio(centroLogCentroBen.getIdCentroBen().getId());
+			centroLogCentroBenDTO.setIdCentroLogistico(centroLogCentroBen.getIdCentroLog().getIdCentroLogistico());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return centroLogCentroBen;
+		return centroLogCentroBenDTO;
 	}
 	
 	@Override

@@ -6,30 +6,29 @@ import java.util.List;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CentroBeneficio;
-import com.comfenalcoantioquia.coberturas.commons.dto.CuentaContable;
-
+import com.spring.batch.cobertura.dto.CentroBeneficioDTO;
+import com.spring.batch.cobertura.dto.CuentaContableDTO;
 import com.spring.batch.cobertura.service.CuentasContablesService;
 
-public class ProcessorCentrosBeneficio implements ItemProcessor<List<Object[]>, List<CentroBeneficio>> {
+public class ProcessorCentrosBeneficio implements ItemProcessor<List<Object[]>, List<CentroBeneficioDTO>> {
 
 
 	@Autowired
 	private CuentasContablesService cuentasContablesService;
 	
 	@Override
-	public List<CentroBeneficio> process(List<Object[]> data) throws Exception {
-		List<CentroBeneficio> centrosBeneficios = new ArrayList<>();
+	public List<CentroBeneficioDTO> process(List<Object[]> data) throws Exception {
+		List<CentroBeneficioDTO> centrosBeneficios = new ArrayList<>();
 		for (Object[] objects : data) {
-			CentroBeneficio centroBeneficio = new CentroBeneficio();
-			System.out.println("Codigo: " + objects[2]);
-			centroBeneficio.setCodigo(((String) objects[0]).toString());
-			centroBeneficio.setNombre(((String) objects[1]).toString());
-			String codCuentaContable = ((String) objects[1]).toString();
+			CentroBeneficioDTO centroBeneficioDTO = new CentroBeneficioDTO();
+			System.out.println("Codigo: " + objects[0]);
+			centroBeneficioDTO.setCodigo(((String) objects[0]).toString());
+			centroBeneficioDTO.setNombre(((String) objects[1]).toString());
+			String codCuentaContable = ((String) objects[3] ).toString();
 			Long codCuentaContableL = Long.parseLong(codCuentaContable);
-			CuentaContable cuentaContable = cuentasContablesService.findByCodigo(codCuentaContableL);
-			centroBeneficio.setCuentaContable(cuentaContable);
-			centrosBeneficios.add(centroBeneficio);
+			CuentaContableDTO cuentaContableDTO = cuentasContablesService.findByCodigo(codCuentaContableL);
+			centroBeneficioDTO.setCuentaContableDTO(cuentaContableDTO);
+			centrosBeneficios.add(centroBeneficioDTO);
 		}
 
 		return centrosBeneficios;

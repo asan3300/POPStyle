@@ -1,10 +1,12 @@
 package com.spring.batch.cobertura.service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.CuentaContable;
+
+import com.spring.batch.cobertura.dto.CuentaContableDTO;
+import com.spring.batch.cobertura.entity.CuentaContable;
 
 public interface CuentasContablesService {
 	
-	public CuentaContable findByCodigo(long codigo);
+	public CuentaContableDTO findByCodigo(long codigo);
 	public CuentaContable saveCuentasContables(CuentaContable cuentaContable);
 
 }

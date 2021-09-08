@@ -3,16 +3,17 @@ package com.spring.batch.cobertura.step;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.batch.item.ItemProcessor;
-import com.comfenalcoantioquia.coberturas.commons.dto.CentroLogCentroBen;
+
+import com.spring.batch.cobertura.dto.CentroLogCentroBenDTO;
 
 
-public class ProcessorCentroLogPorCentroBen implements ItemProcessor<List<Object[]>,  List<CentroLogCentroBen>> {
+public class ProcessorCentroLogPorCentroBen implements ItemProcessor<List<Object[]>,  List<CentroLogCentroBenDTO>> {
 
 	@Override
-	public List<CentroLogCentroBen> process(List<Object[]> data) throws Exception {
-		List<CentroLogCentroBen> centroLogCentroBenList = new ArrayList<>();
+	public List<CentroLogCentroBenDTO> process(List<Object[]> data) throws Exception {
+		List<CentroLogCentroBenDTO> centroLogCentroBenList = new ArrayList<>();
 		for (Object[] objects : data) {
-			CentroLogCentroBen centroLogCentroBen = new CentroLogCentroBen();
+			CentroLogCentroBenDTO centroLogCentroBen = new CentroLogCentroBenDTO();
 			centroLogCentroBen.setIdCentroLogistico(Long.parseLong((objects[0]).toString()));
 			centroLogCentroBen.setIdCentroBeneficio(Long.parseLong((objects[1]).toString()));
 			centroLogCentroBenList.add(centroLogCentroBen); 

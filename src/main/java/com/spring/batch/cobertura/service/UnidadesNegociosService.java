@@ -1,10 +1,13 @@
 package com.spring.batch.cobertura.service;
 
-import com.comfenalcoantioquia.coberturas.commons.dto.UnidadNegocio;
+import com.spring.batch.cobertura.dto.UnidadNegocioDTO;
+import com.spring.batch.cobertura.entity.UnidadNegocio;
 
 public interface UnidadesNegociosService {
 	
-	public UnidadNegocio findByCodigo(String codigo);
+	public UnidadNegocioDTO findByCodigo(Long codigo);
+	public UnidadNegocioDTO findByIdv(Long id);
+	public UnidadNegocio findById(Long id);
 	public UnidadNegocio saveUnidadesNegocios(UnidadNegocio unidadNegocio);
 
 }

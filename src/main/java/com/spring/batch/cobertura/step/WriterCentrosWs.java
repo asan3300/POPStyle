@@ -21,7 +21,6 @@ public class WriterCentrosWs implements ItemWriter<List<CentroLogisticoTemp>> {
 			for (List<CentroLogisticoTemp> portafolios : centroLogistico) {
 				for (CentroLogisticoTemp portafolio : portafolios) {
 					CentroLogisticoTemp guardadoCorrectamente = centrosPortafolioService.saveCentroLogisticoTemp(portafolio);
-					//System.out.println("SE HA GUARDADO CORRECTAMENTE");
 				}
 			}
 

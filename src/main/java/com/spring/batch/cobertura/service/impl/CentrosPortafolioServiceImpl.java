@@ -37,25 +37,20 @@ public class CentrosPortafolioServiceImpl implements CentrosPortafolioService {
 	@Override
 	public String findAllWs(String fecha) {
 		String portafolio = "";
-		try {
-			String servicio = "sedesServicio";
-			HttpHeaders headers = Cabecera.headerPI(servicio, plainCreds);
-			Auditoria auditoria = Cabecera.auditoria();
-			Gson g = new Gson();
-			String jsonString = g.toJson(auditoria);
-			JSONObject objetoAuditoria = new JSONObject(jsonString);
-			String json = "{\"auditoria\":" + objetoAuditoria
-					+ ",\"parametros\":{\"servicio\":{\"centroLogistico\":{\"codigo\":\""
-					+ "\"}}}}";
 
-			HttpEntity<String> entity = new HttpEntity<>(json, headers);
-			ResponseEntity<String> response = restTemplate.postForEntity(baseUrl, entity, String.class);
-			portafolio = response.getBody();
-			System.err.println("CENTROS LOGISTICOS ->" + response.getStatusCode());
-		} catch (Exception e) {
-			System.out.println("ERROR: " + e);
-		}
-		
+		String servicio = "sedesServicio";
+		HttpHeaders headers = Cabecera.headerPI(servicio, plainCreds);
+		Auditoria auditoria = Cabecera.auditoria();
+		Gson g = new Gson();
+		String jsonString = g.toJson(auditoria);
+		JSONObject objetoAuditoria = new JSONObject(jsonString);
+		String json = "{\"auditoria\":" + objetoAuditoria
+				+ ",\"parametros\":{\"servicio\":{\"centroLogistico\":{\"codigo\":\"" + "\"}}}}";
+
+		HttpEntity<String> entity = new HttpEntity<>(json, headers);
+		ResponseEntity<String> response = restTemplate.postForEntity(baseUrl, entity, String.class);
+		portafolio = response.getBody();
+
 		return portafolio;
 	}
 
